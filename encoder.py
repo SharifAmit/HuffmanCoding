@@ -63,8 +63,6 @@ for q in range(len(bintree)-1,-1,-1):
                 right = bintree[i]
                 rightstr = strtree[i]
                 j = i
-    #print rightstr, "ami right"
-    #print right
     for y in rightstr:
         ci = newchar.index(y)
         if encoder[ci]=="null":
@@ -80,11 +78,6 @@ for q in range(len(bintree)-1,-1,-1):
                 left = bintree[i]
                 leftstr = strtree[i]
                 z = i
-                #print "ami z",z
-
-    #print leftstr, "ami left"
-
-    #print left
 
     for x in leftstr:
         ci = newchar.index(x)
@@ -94,7 +87,6 @@ for q in range(len(bintree)-1,-1,-1):
             encoder[ci]="1"+encoder[ci]
 
 
-    #print leftstr
     w = strtree.index(leftstr)
     strtree.pop(w)
     bintree.pop(w)
