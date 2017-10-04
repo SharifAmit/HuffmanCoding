@@ -1,7 +1,18 @@
 g = open("output.txt","r")
 s = g.readline()
-encoder = ['111', '101', '001', '1101', '0111', '1100', '0110', '1000', '0100', '0001', '10011', '01011', '0000', '01010', '10010']
-newchar= [' ', 'a', 'm', 'i', 'e', 'h', 'l', 'n', 's', 'r', 'f', 'k', 'o', 't', 'y']
+
+encoder=[]
+characters = []
+with open('dictionary.txt') as p:
+    for line in p:
+        line = line.strip('\n')
+        #print line
+        w = line.split("=")
+        #print w[0]
+        #print w[1]
+        characters.append(w[0])
+        encoder.append(w[1])
+
 t = ""
 j =""
 for x in s:
@@ -9,8 +20,9 @@ for x in s:
     for y in encoder:
         if j == y:
             q = encoder.index(y)
-            t = t+ newchar[q]
+            t = t+ characters[q]
             j = ""
 print t
 f = open("output2.txt","w")
 f.write(t)
+
