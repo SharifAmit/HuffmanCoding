@@ -1,5 +1,6 @@
 f = open("input.txt","r")
 s = f.readline() # Reading line from the file
+#s = s.replace(" ","") # Removing spaces between letters)
 s = s.lower()
 t = list(set(s)) # Unique chars in the string
 print "The String: ",s
@@ -41,7 +42,7 @@ print "Number of nodes in the tree: ",j
 
 print "Number of leafs in the tree: ",k
 
-# Generating empty encoder table
+
 encoder = ["null"]*k
 print "encoder",encoder
 
@@ -52,7 +53,6 @@ strtree = list(newchar)
 print "binarytree",bintree
 print "Stringtree",strtree
 
-# Populating encoder table 
 for q in range(len(bintree)-1,-1,-1):
     left = 999
     right = 999
@@ -63,6 +63,8 @@ for q in range(len(bintree)-1,-1,-1):
                 right = bintree[i]
                 rightstr = strtree[i]
                 j = i
+    #print rightstr, "ami right"
+    #print right
     for y in rightstr:
         ci = newchar.index(y)
         if encoder[ci]=="null":
@@ -78,6 +80,11 @@ for q in range(len(bintree)-1,-1,-1):
                 left = bintree[i]
                 leftstr = strtree[i]
                 z = i
+                #print "ami z",z
+
+    #print leftstr, "ami left"
+
+    #print left
 
     for x in leftstr:
         ci = newchar.index(x)
@@ -87,6 +94,7 @@ for q in range(len(bintree)-1,-1,-1):
             encoder[ci]="1"+encoder[ci]
 
 
+    #print leftstr
     w = strtree.index(leftstr)
     strtree.pop(w)
     bintree.pop(w)
@@ -102,7 +110,7 @@ for q in range(len(bintree)-1,-1,-1):
     print "encoder",encoder
     if len(bintree)==1:
         break
-print newchar
+print "char",newchar
 f.close()
 t = ""
 for i in s:
@@ -111,8 +119,17 @@ for i in s:
             p = newchar.index(j)
             t = t + encoder[p]
 
-#Saving the string as binary values
 print t
 g = open("output.txt","w")
 g.write(t)
 g.close()
+p = open("dictionary.txt","w")
+
+for i in range (0,len(encoder),1):
+    q = newchar[i]
+    t = encoder[i]
+    w=q+"="+t
+    print w
+    p.write(w+"\n")
+    w = ""
+p.close()
